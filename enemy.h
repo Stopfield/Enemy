@@ -13,6 +13,9 @@ class Enemy {
         void printStatus();
         void decreaseHP(int);
 
+        void setName(string);
+        string getName();
+
     private:
         std::string name;
         int healthPoints;

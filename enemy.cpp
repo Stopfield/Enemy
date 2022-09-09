@@ -24,3 +24,15 @@ void Enemy::printStatus() {
 void Enemy::decreaseHP(int damage) {
     this->healthPoints -= damage;
 }
+
+void Enemy::setName(string name) {
+    if (name.length() > 30) {
+        std::cout << "The name is too big\n";
+        return;
+    }
+    this->name = name;
+}
+
+void Enemy::getName() {
+    return this->name;
+}
