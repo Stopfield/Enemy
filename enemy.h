@@ -16,6 +16,9 @@ class Enemy {
         void setName(string);
         string getName();
 
+        void setHP(int);
+        int getHP();
+        
     private:
         std::string name;
         int healthPoints;

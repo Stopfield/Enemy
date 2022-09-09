@@ -33,6 +33,6 @@ void Enemy::setName(string name) {
     this->name = name;
 }
 
-void Enemy::getName() {
+string Enemy::getName() {
     return this->name;
 }
