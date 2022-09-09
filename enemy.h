@@ -3,10 +3,9 @@
 
 #include <string>
 
-
 class Enemy {
     public:
-        Enemy(std::string name, int healthPoints, int defensePoints);
+        Enemy(std::string, int, int);
         ~Enemy();
 
         void printStatus();
