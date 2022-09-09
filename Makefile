@@ -1,3 +1,5 @@
+all: main enemy.o
+
 main: main.cpp enemy.o
 	g++ -Wall main.cpp enemy.o -o main
 
