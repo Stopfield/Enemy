@@ -36,3 +36,16 @@ void Enemy::setName(string name) {
 string Enemy::getName() {
     return this->name;
 }
+
+void Enemy::setDefensePoints(int defensePoints) {
+    if (defensePoints < 0) {
+        std::cout << "Defense points can't be negative!\n";
+        return;
+    }
+    this->defensePoints = defensePoints;
+}
+
+int Enemy::getDefensePoints() {
+    return this->defensePoints;
+}
+
