@@ -3,9 +3,11 @@
 
 #include <string>
 
+using std::string;
+
 class Enemy {
     public:
-        Enemy(std::string, int, int);
+        Enemy(string, int, int);
         ~Enemy();
 
         void printStatus();
