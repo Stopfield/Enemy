@@ -37,6 +37,18 @@ string Enemy::getName() {
     return this->name;
 }
 
+void Enemy::setHP(int healthPoints) {
+    if (healthPoints < 0) {
+        std::cout << "HP cannot be negative!\n";
+        return;
+    }
+    this->healthPoints = healthPoints;
+}
+
+int Enemy::getHP() {
+    return this->healthPoints;
+}
+
 void Enemy::setDefensePoints(int defensePoints) {
     if (defensePoints < 0) {
         std::cout << "Defense points can't be negative!\n";
