@@ -44,7 +44,8 @@ void Enemy::decreaseHP(int damage) {
 
 void Enemy::setName(string name) {
     if (name.length() > 30) {
-        std::cout << "The name is too big! Nothing assigned\n";
+        std::cout << "The name is too big!\n";
+        this->name = name.substr(0, 30);
         return;
     }
     this->name = name;
