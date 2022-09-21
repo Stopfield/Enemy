@@ -7,26 +7,33 @@
 // : name(name), healthPoints(healthPoints), defensePoints(defensePoints) {
 // }
 
+int Enemy::numEnemies = 0;
+const string Enemy::enemyType = "Generic Enemy";
+
 Enemy::Enemy() {
     this->setName("Void enemy");
     this->setHP(10);
     this->setDefensePoints(10);
+    Enemy::numEnemies++;
 }
 
 Enemy::Enemy(std::string name, int healthPoints, int defensePoints) {
     this->setName(name);
     this->setHP(healthPoints);
     this->setDefensePoints(defensePoints);
+    Enemy::numEnemies++;
 }
 
 Enemy::Enemy(const Enemy &otherEnemy) {
     this->setName( otherEnemy.name );
     this->setHP ( otherEnemy.healthPoints );
     this->setDefensePoints( otherEnemy.defensePoints);
+    Enemy::numEnemies++;
 }
 
 Enemy::~Enemy() {
     std::cout << "Destroying something right here...\n";
+    Enemy::numEnemies--;
 }
 
 // Print all enemy status
@@ -35,6 +42,14 @@ void Enemy::printStatus() const {
     std::cout << "Enemy: " << this->name << "\n";
     std::cout << "Health Points: " << this->healthPoints << "\n";
     std::cout << "Defense Points: " << this->defensePoints << "\n"; 
+}
+
+void Enemy::say(const string &phrase) const {
+    std::cout << this->name << " says: " << phrase << "\n";
+}
+
+void Enemy::defineLeader(Enemy &enemy) {
+    enemy.isTheLeader = true;
 }
 
 // When enemy takes damage
