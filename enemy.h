@@ -8,11 +8,13 @@ using std::string;
 class Enemy {
     public:
         Enemy();
-        Enemy(string, int, int);
+        Enemy(string, int = 10, int = 10);
         Enemy(const Enemy &);
         ~Enemy();
 
         void printStatus() const;
+        bool tauntPlayer() const;
+        bool isHurt() const;
         void decreaseHP(int);
 
         string getName() const { return this->name; }
@@ -26,11 +28,11 @@ class Enemy {
         void setDefensePoints(int);
 
     private:
+        const int MAX_HEALTH_POINTS = 150;
+        const int MAX_DEFENSE_POINTS = 200;
         std::string name;
         int healthPoints;
         int defensePoints;
-        const int MAX_HEALTH_POINTS = 150;
-        const int MAX_DEFENSE_POINTS = 200;
 };
 
 #endif

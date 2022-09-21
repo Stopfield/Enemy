@@ -13,7 +13,7 @@ Enemy::Enemy() {
     this->setDefensePoints(10);
 }
 
-Enemy::Enemy(std::string name, int healthPoints = 10, int defensePoints = 10) {
+Enemy::Enemy(std::string name, int healthPoints, int defensePoints) {
     this->setName(name);
     this->setHP(healthPoints);
     this->setDefensePoints(defensePoints);
@@ -40,6 +40,23 @@ void Enemy::printStatus() const {
 // When enemy takes damage
 void Enemy::decreaseHP(int damage) {
     this->healthPoints -= damage;
+}
+
+// Is the enemy hurt?
+bool Enemy::isHurt() const {
+    return this->healthPoints < 5 ? true : false;
+}
+
+// The enemy uses his strength to scare the player!
+// If the enemy's defense points are the 10th part of its maximum, he succeeds!
+bool Enemy::tauntPlayer() const {
+    std::cout << this->name << " taunts the player using his strength!\n";
+    if (this->defensePoints > (this->MAX_DEFENSE_POINTS / 10)) {
+        std::cout << "It's a sucess! The player feels scared!\n";
+        return true;
+    }
+    std::cout << "It fails! The player feels awkward!\n";
+    return false;
 }
 
 void Enemy::setName(string name) {
