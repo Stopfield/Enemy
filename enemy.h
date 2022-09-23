@@ -25,7 +25,7 @@ class Enemy {
         int getDefensePoints() const { return this->defensePoints; }
         int getMaxHP() const { return MAX_HEALTH_POINTS; }
         int getMaxDefensePoints() const { return MAX_DEFENSE_POINTS; }
-        string getEnemyType() const { return this->enemyType; }
+        string getEnemyType() const { return this->ENEMY_TYPE; }
         static int getNumEnemiesInArea() {return Enemy::numEnemies; }
 
         void setName(string);
