@@ -8,7 +8,7 @@ using std::string;
 class Enemy {
     public:
         Enemy();
-        Enemy(const string &, int = 10, int = 10);
+        Enemy(const string &, int = 10, int = 10, bool = false);
         Enemy(const Enemy &);
         ~Enemy();
 
@@ -28,7 +28,7 @@ class Enemy {
         string getEnemyType() const { return this->ENEMY_TYPE; }
         static int getNumEnemiesInArea() {return Enemy::numEnemies; }
 
-        void setName(string);
+        void setName(const string &);
         void setHP(int);
         void setDefensePoints(int);
 

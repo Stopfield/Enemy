@@ -14,13 +14,15 @@ Enemy::Enemy() {
     this->setName("Void enemy");
     this->setHP(10);
     this->setDefensePoints(10);
+    this->isLeader = false;
     Enemy::numEnemies++;
 }
 
-Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints) {
+Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints, bool leader) {
     this->setName(name);
     this->setHP(healthPoints);
     this->setDefensePoints(defensePoints);
+    this->isLeader = leader;
     Enemy::numEnemies++;
 }
 
@@ -28,11 +30,12 @@ Enemy::Enemy(const Enemy &otherEnemy) {
     this->setName( otherEnemy.name );
     this->setHP ( otherEnemy.healthPoints );
     this->setDefensePoints( otherEnemy.defensePoints);
+    this->isLeader = otherEnemy.isLeader;
     Enemy::numEnemies++;
 }
 
 Enemy::~Enemy() {
-    std::cout << "Destroying something right here...\n";
+    //std::cout << "Destroying something right here...\n";
     Enemy::numEnemies--;
 }
 
@@ -42,6 +45,7 @@ void Enemy::printStatus() const {
     std::cout << "Enemy: " << this->name << "\n";
     std::cout << "Health Points: " << this->healthPoints << "\n";
     std::cout << "Defense Points: " << this->defensePoints << "\n"; 
+    std::cout << "===============================\n";
 }
 
 void Enemy::say(const string &phrase) const {
@@ -74,7 +78,7 @@ bool Enemy::tauntPlayer() const {
     return false;
 }
 
-void Enemy::setName(string name) {
+void Enemy::setName(const string &name) {
     if (name.length() > 30) {
         std::cout << "The name is too big!\n";
         this->name = name.substr(0, 30);
