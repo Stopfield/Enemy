@@ -19,6 +19,7 @@ class Enemy {
         void say(const string &) const;
         void decreaseHP(int);
         static void defineLeader(Enemy &);
+        void catchWeapon(string);
 
         string getName() const { return this->name; }
         int getHP() const { return this->healthPoints; }
@@ -27,6 +28,9 @@ class Enemy {
         int getMaxDefensePoints() const { return MAX_DEFENSE_POINTS; }
         string getEnemyType() const { return this->ENEMY_TYPE; }
         static int getNumEnemiesInArea() {return Enemy::numEnemies; }
+        static const string *getBodyParts() { return Enemy::BODY_PARTS; }
+        //static string* getEnemyBodyParts() { return Enemy::BODY_PARTS; }
+        string *getWeapons() { return this->weapons; }
 
         void setName(const string &);
         void setHP(int);
@@ -35,9 +39,11 @@ class Enemy {
     private:
         const int MAX_HEALTH_POINTS = 150;
         const int MAX_DEFENSE_POINTS = 200;
+        const static string BODY_PARTS[3];
         const static string ENEMY_TYPE;
         static int numEnemies;
         std::string name;
+        std::string weapons[5];
         int healthPoints;
         int defensePoints;
         bool isLeader;
