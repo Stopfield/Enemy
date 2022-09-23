@@ -8,7 +8,7 @@
 // }
 
 int Enemy::numEnemies = 0;
-const string Enemy::enemyType = "Generic Enemy";
+const string Enemy::ENEMY_TYPE = "Generic Enemy";
 
 Enemy::Enemy() {
     this->setName("Void enemy");
@@ -17,7 +17,7 @@ Enemy::Enemy() {
     Enemy::numEnemies++;
 }
 
-Enemy::Enemy(std::string name, int healthPoints, int defensePoints) {
+Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints) {
     this->setName(name);
     this->setHP(healthPoints);
     this->setDefensePoints(defensePoints);
@@ -49,7 +49,7 @@ void Enemy::say(const string &phrase) const {
 }
 
 void Enemy::defineLeader(Enemy &enemy) {
-    enemy.isTheLeader = true;
+    enemy.isLeader = true;
 }
 
 // When enemy takes damage
@@ -66,7 +66,7 @@ bool Enemy::isHurt() const {
 // If the enemy's defense points are the 10th part of its maximum, he succeeds!
 bool Enemy::tauntPlayer() const {
     std::cout << this->name << " taunts the player using his strength!\n";
-    if (this->defensePoints > (this->MAX_DEFENSE_POINTS / 10)) {
+    if (this->defensePoints > (this->MAX_DEFENSE_POINTS / 10) && this->isLeader ) {
         std::cout << "It's a sucess! The player feels scared!\n";
         return true;
     }

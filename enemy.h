@@ -8,14 +8,14 @@ using std::string;
 class Enemy {
     public:
         Enemy();
-        Enemy(string, int = 10, int = 10);
+        Enemy(const string &, int = 10, int = 10);
         Enemy(const Enemy &);
         ~Enemy();
 
         void printStatus() const;
         bool tauntPlayer() const;
         bool isHurt() const;
-        bool isLeader() const { return this->isTheLeader; }
+        bool isALeader() const { return this->isLeader; }
         void say(const string &) const;
         void decreaseHP(int);
         static void defineLeader(Enemy &);
@@ -35,12 +35,12 @@ class Enemy {
     private:
         const int MAX_HEALTH_POINTS = 150;
         const int MAX_DEFENSE_POINTS = 200;
-        const static string enemyType;
+        const static string ENEMY_TYPE;
         static int numEnemies;
         std::string name;
         int healthPoints;
         int defensePoints;
-        bool isTheLeader;
+        bool isLeader;
 };
 
 #endif
