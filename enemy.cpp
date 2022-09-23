@@ -9,6 +9,7 @@
 
 int Enemy::numEnemies = 0;
 const string Enemy::ENEMY_TYPE = "Generic Enemy";
+const string Enemy::BODY_PARTS[3] = {"Head", "Body", "Feet"};
 
 Enemy::Enemy() {
     this->setName("Void enemy");
@@ -37,6 +38,18 @@ Enemy::Enemy(const Enemy &otherEnemy) {
 Enemy::~Enemy() {
     //std::cout << "Destroying something right here...\n";
     Enemy::numEnemies--;
+}
+
+// Aqui, o melhor uso seria vector
+void Enemy::catchWeapon(string weapon) {
+    for (int i = 0; i < 5; i++) {
+        if (this->weapons[i] == "") {
+            this->weapons[i] = weapon;
+            std::cout << this->name << " catches " << weapon << "!\n";
+            return;
+        }
+    }
+    std::cout << this->name << "'s pockets are full! He leaves " << weapon << "!\n";
 }
 
 // Print all enemy status
