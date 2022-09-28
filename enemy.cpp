@@ -24,6 +24,7 @@ Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints, int a
     this->setName(name);
     this->setHP(healthPoints);
     this->setDefensePoints(defensePoints);
+    this->setAttackPoints(attackPoints);
     this->isLeader = leader;
     Enemy::numEnemies++;
 }
@@ -55,12 +56,22 @@ void Enemy::catchWeapon(string weapon) {
     std::cout << this->name << "'s pockets are full! He leaves " << weapon << "!\n";
 }
 
+void Enemy::attack(Enemy &otherEnemy) {
+    if (otherEnemy.healthPoints <= 0) {
+        std::cout << otherEnemy.name << " is already dead.\n";
+        return;
+    }
+    std::cout << this->name << " attacks " << otherEnemy.name << " by " << this->attackPoints << " HP!\n";
+    otherEnemy.decreaseHP(this->attackPoints);
+}
+
 // Print all enemy status
 void Enemy::printStatus() const {
     std::cout << "===============================\n";
     std::cout << "Enemy: " << this->name << "\n";
     std::cout << "Health Points: " << this->healthPoints << "\n";
     std::cout << "Defense Points: " << this->defensePoints << "\n"; 
+    std::cout << "Attack Points: " << this->attackPoints << "\n"; 
     std::cout << "===============================\n";
 }
 
