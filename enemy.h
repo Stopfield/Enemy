@@ -21,6 +21,7 @@ class Enemy {
         static void defineLeader(Enemy &);
         void catchWeapon(string);
         void attack(Enemy &);
+        void fightWith(Enemy &);
 
         string getName() const { return this->name; }
         int getHP() const { return this->healthPoints; }

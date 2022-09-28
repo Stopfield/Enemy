@@ -1,4 +1,6 @@
 #include <iostream>
+#include <time.h>
+#include <cstdlib>
 #include "enemy.h"
 
 // Trying to use Member List Initialization
@@ -17,6 +19,7 @@ Enemy::Enemy() {
     this->setDefensePoints(10);
     this->setAttackPoints(3);
     this->isLeader = false;
+    srand(time(0));
     Enemy::numEnemies++;
 }
 
@@ -26,6 +29,7 @@ Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints, int a
     this->setDefensePoints(defensePoints);
     this->setAttackPoints(attackPoints);
     this->isLeader = leader;
+    srand(time(0));
     Enemy::numEnemies++;
 }
 
@@ -35,11 +39,12 @@ Enemy::Enemy(const Enemy &otherEnemy) {
     this->setDefensePoints( otherEnemy.defensePoints );
     this->setAttackPoints( otherEnemy.attackPoints );
     this->isLeader = otherEnemy.isLeader;
+    srand(time(0));
     Enemy::numEnemies++;
 }
 
 Enemy::~Enemy() {
-    //std::cout << "Destroying something right here...\n";
+    std::cout << "Destroying " << this->name <<" from memory\n";
     Enemy::numEnemies--;
 }
 
@@ -57,12 +62,22 @@ void Enemy::catchWeapon(string weapon) {
 }
 
 void Enemy::attack(Enemy &otherEnemy) {
+    int randomNumber = rand() % 3;
     if (otherEnemy.healthPoints <= 0) {
         std::cout << otherEnemy.name << " is already dead.\n";
         return;
     }
-    std::cout << this->name << " attacks " << otherEnemy.name << " by " << this->attackPoints << " HP!\n";
+    std::cout << this->name << " attacks " << otherEnemy.name << " in the " << otherEnemy.BODY_PARTS[randomNumber] << " by " << this->attackPoints << " HP!\n";
     otherEnemy.decreaseHP(this->attackPoints);
+}
+
+void Enemy::fightWith(Enemy &otherEnemy) {
+    while ((this->healthPoints > 0) && (otherEnemy.healthPoints > 0)) {
+        this->attack(otherEnemy);   // This enemy attacks another
+        otherEnemy.attack(*this);   // The other enemy attacks this one
+    }
+    string winner = this->healthPoints > otherEnemy.healthPoints ? this->name : otherEnemy.name ;
+    std::cout << "The winner is " << winner << "!\n";
 }
 
 // Print all enemy status
