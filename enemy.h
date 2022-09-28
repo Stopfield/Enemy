@@ -8,7 +8,7 @@ using std::string;
 class Enemy {
     public:
         Enemy();
-        Enemy(const string &, int = 10, int = 10, bool = false);
+        Enemy(const string &, int = 10, int = 10, int = 3, bool = false);
         Enemy(const Enemy &);
         ~Enemy();
 
@@ -31,10 +31,12 @@ class Enemy {
         static const string *getBodyParts() { return Enemy::BODY_PARTS; }
         //static string* getEnemyBodyParts() { return Enemy::BODY_PARTS; }
         string *getWeapons() { return this->weapons; }
+        int getAttackPoints() { return this->attackPoints; }
 
         void setName(const string &);
         void setHP(int);
         void setDefensePoints(int);
+        void setAttackPoints(int);
 
     private:
         const int MAX_HEALTH_POINTS = 150;
@@ -46,6 +48,7 @@ class Enemy {
         std::string weapons[5];
         int healthPoints;
         int defensePoints;
+        int attackPoints;
         bool isLeader;
 };
 

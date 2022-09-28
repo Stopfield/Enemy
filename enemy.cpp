@@ -15,11 +15,12 @@ Enemy::Enemy() {
     this->setName("Void enemy");
     this->setHP(10);
     this->setDefensePoints(10);
+    this->setAttackPoints(3);
     this->isLeader = false;
     Enemy::numEnemies++;
 }
 
-Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints, bool leader) {
+Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints, int attackPoints, bool leader) {
     this->setName(name);
     this->setHP(healthPoints);
     this->setDefensePoints(defensePoints);
@@ -30,7 +31,8 @@ Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints, bool 
 Enemy::Enemy(const Enemy &otherEnemy) {
     this->setName( otherEnemy.name );
     this->setHP ( otherEnemy.healthPoints );
-    this->setDefensePoints( otherEnemy.defensePoints);
+    this->setDefensePoints( otherEnemy.defensePoints );
+    this->setAttackPoints( otherEnemy.attackPoints );
     this->isLeader = otherEnemy.isLeader;
     Enemy::numEnemies++;
 }
@@ -42,6 +44,7 @@ Enemy::~Enemy() {
 
 // Aqui, o melhor uso seria vector
 void Enemy::catchWeapon(string weapon) {
+    // Verify which position is empty and store it there
     for (int i = 0; i < 5; i++) {
         if (this->weapons[i] == "") {
             this->weapons[i] = weapon;
@@ -114,5 +117,13 @@ void Enemy::setDefensePoints(int defensePoints) {
         return;
     }
     this->defensePoints = defensePoints;
+}
+
+void Enemy::setAttackPoints(int attackPoints) {
+    if (attackPoints < 0) {
+        this->attackPoints = 1;
+        return;
+    }
+    this->attackPoints = attackPoints;
 }
 
