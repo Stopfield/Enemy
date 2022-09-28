@@ -19,7 +19,7 @@ class Enemy {
         void say(const string &) const;
         void decreaseHP(int);
         static void defineLeader(Enemy &);
-        void catchWeapon(string);
+        void catchWeapon(const string &);
         void attack(Enemy &);
         void fightWith(Enemy &);
 
@@ -32,8 +32,9 @@ class Enemy {
         static int getNumEnemiesInArea() {return Enemy::numEnemies; }
         static const string *getBodyParts() { return Enemy::BODY_PARTS; }
         //static string* getEnemyBodyParts() { return Enemy::BODY_PARTS; }
-        string *getWeapons() { return this->weapons; }
-        int getAttackPoints() { return this->attackPoints; }
+        const string *getWeapons() const { return this->weapons; }
+        // string *getWeapons() { return this->weapons; }
+        int getAttackPoints() const { return this->attackPoints; }
 
         void setName(const string &);
         void setHP(int);

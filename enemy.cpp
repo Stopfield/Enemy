@@ -49,7 +49,7 @@ Enemy::~Enemy() {
 }
 
 // Aqui, o melhor uso seria vector
-void Enemy::catchWeapon(string weapon) {
+void Enemy::catchWeapon(const string &weapon) {
     // Verify which position is empty and store it there
     for (int i = 0; i < 5; i++) {
         if (this->weapons[i] == "") {
