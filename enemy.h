@@ -30,7 +30,7 @@ class Enemy {
         void catchWeapon(const string &);
         void attack(Enemy &);
         void fightWith(Enemy &);
-        // void equipWeapon();
+        void equipWeapon(int);
 
         string getName() const { return this->name; }
         int getHP() const { return this->healthPoints; }
@@ -44,6 +44,7 @@ class Enemy {
         const string *getWeapons() const { return this->weapons; }
         // string *getWeapons() { return this->weapons; }
         int getAttackPoints() const { return this->attackPoints; }
+        const string * getEquippedWeapon() const { return this->equippedWeaponPtr; }
 
         void setName(const string &);
         void setHP(int);
@@ -59,9 +60,11 @@ class Enemy {
         static int numEnemies;
         std::string name;
         std::string weapons[Enemy::INITIAL_NUM_WEAPONS];
+        std::string *equippedWeaponPtr;
         int healthPoints;
         int defensePoints;
         int attackPoints;
+        int weaponInventorySize = Enemy::INITIAL_NUM_WEAPONS;
         bool isLeader;
 };
 
