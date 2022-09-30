@@ -8,26 +8,28 @@
 using std::cout;
 
 int main() {
+    
+    const int numEnemies = 3;
+    const string newName = "Goblin ";
+    string *name;
 
-    Enemy *bully;
-    Enemy goblin("Goblin");
-    Enemy ghost("Ghost", 5, 3, 1);
-    Enemy robot("Robot", 15, 10, 5, true);
+    // Alocação de memória de um array
+    Enemy *inimigos = new Enemy[numEnemies];
 
-    // Dando diversas armas para o goblin
-    goblin.catchWeapon("Espada");
-    goblin.catchWeapon("Arco");
-    goblin.catchWeapon("Machado");
-    goblin.catchWeapon("Bombas");
-    goblin.catchWeapon("Foice");
+    // Altera e imprime os nomes dos inimigos no array
+    for (int i = 0; i < numEnemies; i++) {
+        inimigos[i].setName(newName + std::to_string(i));
+        std::cout << inimigos[i].getName() << "\n";
+    }
 
-    // Aqui ele encheu os bolsos
-    goblin.catchWeapon("Bastão");
+    name = new std::string(inimigos[1].getName());
 
-    bully = &robot;
-    bully->fightWith(goblin);
+    std::cout << "*name = "<< *name << "\n";
 
-    ghost.say("HAHAHA");
+    delete name;
+    delete [] inimigos;
+    name = 0;
+    inimigos = 0;
     
     return 0;
 }
