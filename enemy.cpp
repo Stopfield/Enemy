@@ -14,11 +14,14 @@ const string Enemy::ENEMY_TYPE = "Generic Enemy";
 const string Enemy::BODY_PARTS[3] = {"Head", "Body", "Feet"};
 
 Enemy::Enemy() {
+    // Posso criar uma função que aloque as memórias necessárias (é uma boa)
+    // Aí no destrutor, bote o delete
     this->setName("Void enemy");
     this->setHP(10);
     this->setDefensePoints(10);
     this->setAttackPoints(3);
     this->isLeader = false;
+    this->equippedWeaponPtr = 0;
     srand(time(0));
     Enemy::numEnemies++;
 }
@@ -29,6 +32,7 @@ Enemy::Enemy(const std::string &name, int healthPoints, int defensePoints, int a
     this->setDefensePoints(defensePoints);
     this->setAttackPoints(attackPoints);
     this->isLeader = leader;
+    this->equippedWeaponPtr = 0;
     srand(time(0));
     Enemy::numEnemies++;
 }
@@ -39,12 +43,14 @@ Enemy::Enemy(const Enemy &otherEnemy) {
     this->setDefensePoints( otherEnemy.defensePoints );
     this->setAttackPoints( otherEnemy.attackPoints );
     this->isLeader = otherEnemy.isLeader;
+    this->equippedWeaponPtr = 0;
     srand(time(0));
     Enemy::numEnemies++;
 }
 
 Enemy::~Enemy() {
     std::cout << "Destroying " << this->name <<" from memory\n";
+    delete this->equippedWeaponPtr;
     Enemy::numEnemies--;
 }
 
@@ -59,6 +65,14 @@ void Enemy::catchWeapon(const string &weapon) {
         }
     }
     std::cout << this->name << "'s pockets are full! He leaves " << weapon << "!\n";
+}
+
+void Enemy::equipWeapon(int weaponIndexOnInventory) {
+    if (weaponIndexOnInventory > this->weaponInventorySize) {
+        this->equippedWeaponPtr = 0;
+        return;
+    }
+    this->equippedWeaponPtr = &this->weapons[weaponIndexOnInventory];
 }
 
 void Enemy::attack(Enemy &otherEnemy) {
